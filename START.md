@@ -1,19 +1,29 @@
 # Ablauf für den Agenten
 
-Du richtest das Projekt des Nutzers nach dieser Arbeitsweise ein. Arbeite die Schritte der Reihe nach ab. Sprich in der Sprache des Nutzers, in einfachen Sätzen. Die Regeln selbst stehen in `vorlagen/globale-regeln.md`; dieser Ablauf sagt nur, wie du sie einrichtest.
+> [!IMPORTANT]
+> **Dein Auftrag**
+>
+> - **Wer du bist:** ein Coding-Agent (Claude Code, Codex oder ähnlich). Ein Mensch hat dich in seinem Projektordner gestartet und dir diesen Link gegeben.
+> - **Dein Ziel:** sein Projekt nach dieser Arbeitsweise einrichten: globale Regeln, `AGENTS.md`, `STAND.md`, Prüfungen, Git-Hooks, Freigaben und CI.
+> - **Nie ohne Ja:** etwas ändern vor Schritt 0, Dateien löschen, pushen, ein GitHub-Repository anlegen, GitHub-Einstellungen ändern, globale Regeldateien überschreiben. Konten, Passwörter und Codes macht immer der Mensch.
+> - **Vorlagen holen:** einzelne Dateien als Rohtext unter `https://raw.githubusercontent.com/TheDomotro/agenten-arbeitsweise/main/<pfad>`. Oder alles in einen temporären Ordner außerhalb des Projekts: `git clone --depth 1 https://github.com/TheDomotro/agenten-arbeitsweise <temporärer Ordner>`. Kopiere nur einzelne Dateien ins Projekt, nie das ganze Repository.
+> - **Fertig, wenn:** `check-ops`, Lint und Tests grün sind, Einrichtung und Aufräumen als zwei Commits vorliegen, der Mensch deinen Bericht aus Schritt 9 hat und der temporäre Ordner gelöscht ist.
 
-Hole die Vorlagen so: `git clone --depth 1 <URL dieses Repositorys> <temporärer Ordner außerhalb des Projekts>`. Kopiere nur einzelne Dateien daraus, nie das ganze Repository.
+Die Vorlagen: `vorlagen/globale-regeln.md`, `vorlagen/global-rules.en.md`, `vorlagen/AGENTS.md`, `vorlagen/STAND.md`, `vorlagen/CLAUDE.md`, `vorlagen/claude-settings.json`, `vorlagen/ci.yml`, `vorlagen/scripts/check-ops.mjs`, `vorlagen/scripts/githooks/pre-commit`, `vorlagen/scripts/githooks/post-merge`, `vorlagen/scripts/githooks/post-checkout`.
+
+Arbeite die Schritte der Reihe nach ab. Sprich in der Sprache des Nutzers, in einfachen Sätzen. Die Regeln selbst stehen in `vorlagen/globale-regeln.md`; dieser Ablauf sagt nur, wie du sie einrichtest.
 
 ## 0. Erklären und Erlaubnis holen
 
 Bevor du etwas änderst, erkläre dem Nutzer in 5–8 einfachen Sätzen ohne Fachbegriffe, warum diese Arbeitsweise langfristig hilft. Sinngemäß:
 
-- Ohne feste Regeln wird ein Projekt mit Agenten jede Woche schwerer zu steuern. Agenten kopieren Abkürzungen, Beschreibungen veralten, dieselben Fehler kommen wieder, und der Mensch muss immer mehr selbst nachprüfen.
-- Mit dieser Arbeitsweise wird jede Korrektur zu einer automatischen Prüfung. Das Projekt passt dadurch zunehmend selbst auf sich auf: Fehler fallen früh auf, Agenten folgen den guten Mustern, der Mensch muss weniger nachprüfen.
-- Je länger man so arbeitet, desto einfacher wird es.
+- Viele Kommentare und viel Doku schaden mit Agenten. Sie füllen den Kontext, widersprechen sich und dem Code und veralten. Dann rät der Agent oder nimmt einen alten Kommentar als Ausrede für eine Abkürzung.
+- Darum gilt: Der Code ist die einzige Wahrheit.
+- Prüfungen im Code (Lint-Regeln, Typen, Tests, Hooks, CI) wirken für Agenten wie Naturgesetze. Sie halten jeden Agenten auf, auch wenn er sich verrennt. Darin kann er sich frei bewegen.
+- Jede Korrektur wird eine neue Prüfung. So wird das Projekt mit der Zeit besser, und der Mensch muss weniger nacharbeiten.
 - Ehrlich dazu: Am Anfang kostet es Einrichtung und etwas Disziplin. Es ersetzt kein Nachdenken über das Produkt. Prüfungen fangen nur, was einmal als Prüfung festgehalten wurde.
 
-Sage dann in 3–4 Sätzen, was du gleich tust: Fragen stellen, Regeln und Prüfungen anlegen, aufräumen, committen. Sage, dass du vor dem Löschen, Pushen und Anlegen eines GitHub-Repositorys fragst. Warte auf ein Ja.
+Sage dann in 3–4 Sätzen, was du gleich tust: Fragen stellen, Regeln und Prüfungen anlegen, aufräumen, committen. Sage, dass du vor dem Löschen, Pushen und vor Änderungen auf GitHub fragst. Warte auf ein Ja.
 
 ## 1. Umgebung prüfen
 
@@ -41,6 +51,8 @@ Stelle alle Fragen in einer Nachricht, jede mit deiner Empfehlung. Lass Fragen w
 - Kein Repository: `git init -b main`, `.gitignore` des Stacks anlegen, `.runtime/` darin eintragen.
 - Kein GitHub-Konto: Den Nutzer anleiten, auf github.com selbst ein Konto anzulegen. Danach führt er `gh auth login` selbst aus. Gib nie selbst Passwörter oder Codes ein.
 - Kein Remote: Frage, ob du ein Repository anlegen sollst. Erst nach Ja: `gh repo create <name> --private --source . --remote origin`. Öffentlich nur, wenn der Nutzer das ausdrücklich will.
+- Immer: `git config fetch.prune true`. Dann verschwinden auf GitHub gelöschte Zweige auch lokal.
+- Gibt es ein GitHub-Repository: Frage, ob GitHub Zweige nach dem Merge selbst löschen soll („Automatically delete head branches“). Erst nach Ja: `gh repo edit --delete-branch-on-merge`.
 
 ## 4. Globale Regeln übernehmen
 
@@ -59,7 +71,9 @@ Stelle alle Fragen in einer Nachricht, jede mit deiner Empfehlung. Lass Fragen w
 
 - `vorlagen/scripts/check-ops.mjs` nach `scripts/check-ops.mjs` kopieren. Passe nur `commentMarkers` und `projectRules` oben an den Stack an.
 - Linter und Formatter des Stacks mit Standardeinstellungen einrichten (zum Beispiel ESLint und Prettier, ruff, clippy und rustfmt, gofmt und go vet).
-- `vorlagen/scripts/githooks/pre-commit` nach `scripts/githooks/pre-commit` kopieren, `<LINT-BEFEHL>` ersetzen, ausführbar machen. Dann `git config core.hooksPath scripts/githooks`.
+- `pre-commit`, `post-merge` und `post-checkout` aus `vorlagen/scripts/githooks/` nach `scripts/githooks/` kopieren. In `pre-commit` `<LINT-BEFEHL>` ersetzen. Alle drei ausführbar machen. Dann `git config core.hooksPath scripts/githooks`. Heißt der Hauptzweig nicht `main`: in allen drei anpassen.
+- Claude Code: `vorlagen/claude-settings.json` nach `.claude/settings.json` kopieren. Gibt es die Datei schon: zusammenführen. Sie lässt vor Push, Pull Request, Merge und Release fragen und startet Arbeitskopien vom lokalen Stand.
+- Codex: Stelle in den Codex-Einstellungen ein, dass Push und Merge nur nach Rückfrage laufen.
 - `vorlagen/ci.yml` nach `.github/workflows/ci.yml` kopieren, die Platzhalter durch Setup-, Lint- und Testbefehl ersetzen.
 - Jede neue Prüfung hat eine Fehlermeldung, die sagt, was zu tun ist.
 

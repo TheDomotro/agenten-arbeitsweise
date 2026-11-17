@@ -17,7 +17,7 @@
 
 - Der Hauptchat plant, verteilt, prüft und merged auf `main`. Kleines macht er selbst. Lesen, Suchen und Pakete gehen an Sub-Agenten. Er liest große Dateien und lange Ausgaben nicht selbst.
 - So viele Builder wie unabhängige Bahnen ohne gemeinsame Dateien. Gemeinsam genutzte Dinge (laufender Dienst, Browser, Merge auf `main`) laufen nacheinander.
-- Builder arbeiten in Worktrees unter `.claude/worktrees/` auf eigenem Zweig. Nach dem Merge den Worktree entfernen, der Zweig bleibt.
+- Builder arbeiten in Arbeitskopien (Worktrees) unter `.claude/worktrees/` auf eigenem Zweig. Nach dem Merge entfernen die Git-Hooks Arbeitskopie und Zweig automatisch; der Verlauf steht in Git.
 - Je Paket ein Prüfer, nur lesend, mit hoher Denktiefe. Ein gelöschter oder gelockerter Test oder ein ausgelassener Test ohne Begründung ist ein Fund.
 - Aufträge an einen zweiten Agenten (zum Beispiel Codex) nur, wenn der Nutzer das möchte.
 

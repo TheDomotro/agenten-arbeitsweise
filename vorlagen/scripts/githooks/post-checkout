@@ -1,0 +1,4 @@
+#!/bin/sh
+[ "$3" = "1" ] || exit 0
+sh "$(dirname "$0")/post-merge"
+exit 0

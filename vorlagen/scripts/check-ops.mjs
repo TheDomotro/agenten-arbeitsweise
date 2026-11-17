@@ -13,7 +13,7 @@ const projectRules = [
 
 const commentMarkers = [
   { files: /\.(m?js|cjs|jsx|ts|tsx|rs|go|java|kt|swift|c|h|cpp|hpp|cs|dart|scala|php)$/, markers: ['//', '/*'] },
-  { files: /\.(py|sh|bash|zsh|rb|pl|r|ya?ml|toml|tf|ps1|dockerfile)$|(^|\/)(Dockerfile|Makefile|pre-commit)$/i, markers: ['#'] },
+  { files: /\.(py|sh|bash|zsh|rb|pl|r|ya?ml|toml|tf|ps1|dockerfile)$|(^|\/)(Dockerfile|Makefile|pre-commit|post-merge|post-checkout)$/i, markers: ['#'] },
   { files: /\.(sql|lua|hs|elm)$/, markers: ['--'] },
 ];
 const whyMarker = /^(WARUM|WHY):/;

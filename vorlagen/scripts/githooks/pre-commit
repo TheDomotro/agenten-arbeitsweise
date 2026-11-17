@@ -4,6 +4,19 @@ if [ "$branch" != "main" ] && git diff --cached --name-only | grep -qxE 'AGENTS\
   echo "AGENTS.md und STAND.md ändert nur der Hauptchat auf main. Änderung zurücknehmen und im Bericht nennen." >&2
   exit 1
 fi
+if [ "$branch" = "main" ]; then
+  merged=$(git rev-list --merges --first-parent --parents HEAD | awk '{for (i = 3; i <= NF; i++) print $i}')
+  worktrees=$(git worktree list --porcelain | awk '/^worktree /{sub(/^worktree /, ""); path = $0} /^HEAD /{print $2, path}')
+  while read -r tip path; do
+    case "$path" in */.claude/worktrees/*) ;; *) continue ;; esac
+    if echo "$merged" | grep -qx "$tip"; then
+      echo "Arbeitskopie $path ist schon gemergt. Erst entfernen: git worktree remove \"$path\"" >&2
+      exit 1
+    fi
+  done <<LIST
+$worktrees
+LIST
+fi
 node scripts/check-ops.mjs || { echo "check-ops rot: Funde oben an der Ursache beheben." >&2; exit 1; }
 lint="<LINT-BEFEHL>"
 sh -c "$lint" || { echo "Lint rot: '$lint' ausführen und Funde an der Ursache beheben." >&2; exit 1; }

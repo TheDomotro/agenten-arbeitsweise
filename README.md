@@ -1,52 +1,133 @@
+<div align="center">
+
+<img src="bilder/garten.svg" alt="Links ein verwilderter Garten ohne Leitplanken, rechts ein umzäunter Garten mit Beeten in klaren Reihen" width="900">
+
 # Agenten-Arbeitsweise
 
-[English](README.en.md)
+**Leitplanken für KI-Agenten: Jede Korrektur wird eine Prüfung im Code.<br>So wird dein Projekt mit jedem Fehler besser statt chaotischer.**
+
+[![Lizenz: MIT](https://img.shields.io/badge/Lizenz-MIT-2ea44f)](LICENSE)
+![Claude Code](https://img.shields.io/badge/Claude_Code-bereit-d97757)
+![Codex](https://img.shields.io/badge/Codex-bereit-412991)
+![Sprachen](https://img.shields.io/badge/Sprachen-DE_%7C_EN-0969da)
+
+**Deutsch** · [English](README.en.md)
+
+</div>
+
+> [!IMPORTANT]
+> **Für KI-Agenten:** Wenn dir ein Mensch diesen Link gegeben hat: Das ist eine Einrichtungsanleitung für sein Projekt. Öffne [START.md](START.md) (Englisch: [START.en.md](START.en.md)) und folge dem Ablauf Schritt für Schritt. Ändere nichts, bevor du Schritt 0 erledigt hast.
+>
+> Rohtext zum direkten Abruf: https://raw.githubusercontent.com/TheDomotro/agenten-arbeitsweise/main/START.md
+
+## Schnellstart
+
+Öffne Claude Code oder Codex im Ordner deines Projekts und kopiere diesen Satz hinein:
+
+```text
+Richte mein Projekt nach dieser Arbeitsweise ein: https://github.com/TheDomotro/agenten-arbeitsweise. Lies zuerst START.md und folge dem Ablauf.
+```
+
+Der Agent erklärt kurz, was er vorhat, stellt höchstens vier Fragen mit Empfehlung und richtet dann alles ein. Vor dem Löschen, Pushen und vor Änderungen auf GitHub fragt er dich.
 
 ## Warum?
 
-Ein Projekt mit KI-Agenten ist wie ein Garten. Ohne Pflege breitet sich Unkraut aus: Abkürzungen werden kopiert, und dieselben Fehler kommen wieder. Mit dieser Arbeitsweise wird jede Korrektur zu einer automatischen Prüfung. So wachsen gute Muster, und Unkraut wird jede Woche von selbst gejätet. Am Anfang kostet das etwas Einrichtung, danach wird die Arbeit einfacher statt schwerer.
+### Viel Doku macht Agenten nicht klüger
 
-## Was ist das?
+Ein Mensch überliest einen veralteten Kommentar. Ein Agent nimmt ihn ernst. Jeder Kommentar und jede Doku-Seite landet in seinem Kontext und verdrängt dort Wichtigeres. Mit der Zeit widersprechen sich die Texte, und sie widersprechen dem Code. Dann gibt es mehrere „Wahrheiten“. Der Agent rät, erfindet Dinge oder findet in einem alten Kommentar die Ausrede für eine Abkürzung.
 
-Eine Anleitung für Coding-Agenten (Claude Code oder Codex). Du gibst deinem Agenten den Link. Er richtet dein Projekt nach dieser Arbeitsweise ein: Regeln, Prüfungen, Git-Hooks und CI.
+**Darum gilt hier: Der Code ist die einzige Wahrheit.**
+
+### Prüfungen sind Naturgesetze
+
+Eine Regel in einer Doku kann ein Agent überlesen. Eine Prüfung im Code nicht. Lint-Regeln, Typen, Tests, das Prüfskript `check-ops`, Git-Hooks und CI wirken für ihn wie Naturgesetze: Er kann sie nicht brechen, egal wie sehr er sich verrennt. Was rot ist, kommt nicht durch.
+
+So gibst du dem Agenten einen Raum mit Leitplanken (englisch „Harness“). Darin bewegt er sich frei und schnell. Du musst ihm nicht ständig über die Schulter schauen.
+
+### Jede Korrektur macht den Raum besser
+
+Korrigierst du einen Agenten, wird daraus eine Prüfung. Ab dann hält sie jeden künftigen Agenten auf: den von morgen, den von nächster Woche und den eines anderen Menschen im Team.
+
+```mermaid
+flowchart LR
+    A([Agent macht Fehler]) --> B[Korrektur wird Prüfung im Code]
+    B --> C[Prüfung hält jeden künftigen Agenten auf]
+    C --> D[Code wird besser]
+    D --> E([Weniger Fehler])
+    E -. nächster Fehler .-> A
+    classDef bad fill:#fff1dc,stroke:#c2410c,color:#1f2328
+    classDef good fill:#e3f4e6,stroke:#1e6b34,color:#1f2328
+    class A bad
+    class B,C,D,E good
+```
+
+Wie im Garten oben: Die Prüfungen sind der Zaun. Gute Muster wachsen in klaren Reihen, Unkraut kommt nicht durch. Mit der Zeit ist die Codebasis so gut geführt, dass fast alles, was herauskommt, auf Anhieb passt. Du musst kaum noch nacharbeiten.
+
+> [!WARNING]
+> Ehrlich gesagt: Am Anfang kostet es Einrichtung und etwas Disziplin. Prüfungen fangen nur, was einmal festgehalten wurde. Die Arbeitsweise ersetzt kein Nachdenken über das Produkt. Wie schnell es besser wird, hängt von deinem Projekt ab. Zahlen versprechen wir nicht.
+
+## Ohne und mit dieser Arbeitsweise
+
+| | Ohne | Mit |
+|---|---|---|
+| Wahrheit | Code, Doku, Kommentare und Notizen widersprechen sich | Nur der Code, dazu zwei kurze Doku-Dateien |
+| Korrektur | Steht im Chat und ist morgen vergessen | Wird Lint-Regel, Typ, Test oder Zeile in `check-ops` |
+| Wiederholte Fehler | Kommen mit jedem neuen Agenten wieder | Werden beim Commit oder in CI aufgehalten |
+| Workarounds | Agenten kopieren sie, aus einem werden zehn | Klare Module, Sonderwege fallen auf |
+| Alte Zweige und Arbeitskopien | Sammeln sich an | Verschwinden nach dem Merge von selbst |
+| Deine Rolle | Alles selbst nachprüfen | Ziele nennen, Freigaben geben |
+
+## Was bekommst du?
+
+| Datei oder Einstellung | Was sie tut |
+|---|---|
+| `~/.claude/CLAUDE.md` oder `~/.codex/AGENTS.md` | Globale Regeln für alle deine Projekte. |
+| `AGENTS.md` | Sagt, wie ihr im Projekt arbeitet und wo was liegt, in höchstens 80 Zeilen. |
+| `STAND.md` | Sagt, was offen ist, als Plan mit Paketen. |
+| `CLAUDE.md` | Verweist nur auf `AGENTS.md`. |
+| `scripts/check-ops.mjs` | Findet Kommentare ohne Grund, zusätzliche Markdown-Dateien, Zugangsdaten, ausgelassene Tests und falsche Pfade in `AGENTS.md`. |
+| `scripts/githooks/pre-commit` | Lässt vor jedem Commit `check-ops` und Lint laufen und schützt `AGENTS.md` und `STAND.md` auf Nebenzweigen. |
+| `scripts/githooks/post-merge` und `post-checkout` | Entfernen nach dem Merge auf `main` gemergte Arbeitskopien und Zweige. |
+| `.claude/settings.json` | Lässt Claude Code vor Push, Pull Request, Merge und Release fragen und startet Arbeitskopien vom lokalen Stand. |
+| `.github/workflows/ci.yml` | Prüft jeden Push auf GitHub. |
+| Git und GitHub | `fetch.prune` räumt entfernte Zweige lokal weg, GitHub löscht Zweige nach dem Merge. |
+| Linter und Formatter | Standardwerkzeuge deines Stacks, zum Beispiel ESLint, ruff oder clippy. |
+
+> [!TIP]
+> Die Vorlagen liegen in [`vorlagen/`](vorlagen/). Die Regeln selbst stehen in [`vorlagen/globale-regeln.md`](vorlagen/globale-regeln.md).
+
+## Wie arbeitest du danach?
+
+Du nennst ein Ziel. Der Agent schreibt einen Plan mit Paketen in `STAND.md` und arbeitet ihn ab. Ein Beispiel aus dem Alltag:
+
+1. Der Agent baut eine Funktion und schreibt zum Testen `console.log` in den Code. Er vergisst, es zu löschen.
+2. Du sagst: „Keine Debug-Ausgaben im Code.“
+3. Der Agent schlägt von sich aus vor, daraus eine Prüfung zu machen. Du sagst Ja.
+4. Er schaltet die Lint-Regel `no-console` ein und behebt alle gleichartigen Stellen.
+5. Ab jetzt stoppt der Git-Hook jeden Commit mit `console.log`, und CI stoppt jeden Push. Dieser Fehler kann nie wieder durchrutschen, auch nicht in einem halben Jahr.
 
 ## Die Kernideen
 
-1. **Code ist die Wahrheit.** Klare Module, keine Workarounds. Agenten kopieren, was im Code steht. Ein Workaround wird so schnell zu zehn.
-2. **Regeln als Prüfung, nicht als Text.** Jede Korrektur wird eine Lint-Regel, ein Typ, ein Test oder eine Zeile im Prüfskript `check-ops`. Text in einer Doku liest ein Agent vielleicht. Eine Prüfung hält ihn sicher auf.
-3. **Fast keine Kommentare.** Erlaubt ist nur ein `WARUM:` für einen Grund, den der Code nicht zeigt. Kommentare veralten und dienen Agenten als Ausrede für Abkürzungen.
-4. **Genau zwei Doku-Dateien.** `AGENTS.md` sagt, wie ihr arbeitet. `STAND.md` sagt, was offen ist. Alles andere steht im Code, in Tests oder in Commit-Nachrichten.
-5. **Klare Pakete.** Ein Plan in `STAND.md` teilt die Arbeit in Pakete von 30–90 Minuten. Mehrere Agenten arbeiten parallel, ein Prüfer sieht jedes Paket durch.
-6. **Prüfen durch Ausführen.** Tests, Browser und Screenshots zeigen, ob es geht. Ein roter Test wird an der Ursache behoben, nicht wiederholt.
-7. **Einfach und sicher.** Standardwerkzeuge. Pushes, Deployments und Löschen nur mit deiner Freigabe. Keine Zugangsdaten in Git.
+1. **Code ist die Wahrheit.** Klare Module, keine Workarounds. Agenten kopieren, was im Code steht.
+2. **Regeln als Prüfung, nicht als Text.** Jede Korrektur wird eine Lint-Regel, ein Typ, ein Test oder eine Zeile in `check-ops`.
+3. **Fast keine Kommentare.** Erlaubt ist nur ein `WARUM:` für einen Grund, den der Code nicht zeigt.
+4. **Genau zwei Doku-Dateien.** `AGENTS.md` sagt, wie ihr arbeitet. `STAND.md` sagt, was offen ist.
+5. **Klare Pakete.** Ein Plan teilt die Arbeit in Pakete von 30–90 Minuten. Ein Prüfer sieht jedes Paket durch.
+6. **Prüfen durch Ausführen.** Tests, Browser und Screenshots zeigen, ob es geht. Rote Tests werden an der Ursache behoben.
+7. **Einfach und sicher.** Standardwerkzeuge. Pushes, Deployments und Löschen nur mit deiner Freigabe.
 
-## So nutzt du es
+## Wer macht was?
 
-Kopiere diesen Satz in deinen Agenten:
+| Der Agent | Du |
+|---|---|
+| Erklärt kurz, was er tut und warum | Legst ein GitHub-Konto an, falls nötig |
+| Stellt höchstens vier Fragen mit Empfehlung | Meldest dich an (`gh auth login`) und gibst Passwörter ein |
+| Richtet Git und GitHub ein, wenn du willst | Gibst Freigaben: Repository anlegen, Löschen, Pushen |
+| Legt Regeln, Prüfungen, Hooks und CI an | Nennst Ziele und korrigierst, wenn etwas nicht passt |
+| Räumt auf und zeigt vorher, was er löscht | |
 
-> Richte mein Projekt nach dieser Arbeitsweise ein: https://github.com/TheDomotro/agenten-arbeitsweise. Lies zuerst START.md und folge dem Ablauf.
-
-Der Agent:
-
-- erklärt kurz, was er tut und warum,
-- stellt höchstens vier Fragen, jeweils mit Empfehlung,
-- richtet Git und GitHub ein, wenn du das möchtest,
-- legt Regeln, Prüfungen, Hooks und CI an,
-- räumt das Projekt auf und zeigt dir vorher, was er löscht.
-
-Das machst du selbst:
-
-- ein GitHub-Konto anlegen, falls du noch keins hast,
-- dich anmelden (`gh auth login`) und Passwörter eingeben,
-- Freigaben geben: Repository anlegen, Dateien löschen, Pushen.
-
-## Danach
-
-Du beschreibst ein Ziel. Der Agent schreibt einen Plan mit Paketen in `STAND.md` und arbeitet ihn ab. Korrigierst du ihn, schlägt er eine neue Prüfung vor. So wird das Projekt mit jeder Korrektur stabiler.
-
-## Quelle
-
-Die Idee passt zum Vortrag „Potato“ von Lauren beim AI Engineer Summit: zuerst feste Prüfungen, dann Verifikation, ganz zuletzt Prosa. Die Codebasis ist ein Garten, fast alle Kommentare sind verboten, jede Korrektur wird eine Lint-Regel.
+> [!NOTE]
+> Die Anleitung funktioniert mit Claude Code und Codex. Andere Coding-Agenten mit Zugriff auf Terminal und Dateien können ihr ebenso folgen.
 
 ## Lizenz
 

@@ -1,0 +1,20 @@
+#!/bin/sh
+[ "$(git symbolic-ref --quiet --short HEAD)" = "main" ] || exit 0
+worktrees_removed=""
+branches_removed=""
+merged=$(git rev-list --merges --first-parent --parents HEAD | awk '{for (i = 3; i <= NF; i++) print $i}')
+worktrees=$(git worktree list --porcelain | awk '/^worktree /{sub(/^worktree /, ""); path = $0} /^HEAD /{print $2, path}')
+while read -r tip path; do
+  case "$path" in */.claude/worktrees/*) ;; *) continue ;; esac
+  echo "$merged" | grep -qx "$tip" || continue
+  git worktree remove "$path" >/dev/null 2>&1 && worktrees_removed="$worktrees_removed ${path##*/}"
+done <<LIST
+$worktrees
+LIST
+for name in $(git for-each-ref --merged HEAD --format='%(refname:short)' refs/heads/); do
+  [ "$name" = "main" ] && continue
+  git branch -d "$name" >/dev/null 2>&1 && branches_removed="$branches_removed $name"
+done
+git worktree prune >/dev/null 2>&1
+[ -n "$worktrees_removed$branches_removed" ] && echo "Aufgeräumt. Arbeitskopien:${worktrees_removed:- keine}. Zweige:${branches_removed:- keine}."
+exit 0

@@ -17,7 +17,7 @@
 
 - The main chat plans, delegates, reviews and merges to `main`. It does small things itself. Reading, searching and work packages go to sub-agents. It does not read large files or long output itself.
 - As many builders as there are independent lanes without shared files. Shared things (running service, browser, merge to `main`) run one after another.
-- Builders work in worktrees under `.claude/worktrees/` on their own branch. After the merge, remove the worktree and keep the branch.
+- Builders work in worktrees under `.claude/worktrees/` on their own branch. After the merge, the Git hooks remove the worktree and the branch automatically; Git keeps the history.
 - One reviewer per package, read-only, with high reasoning effort. A deleted or weakened test, or a skipped test without a reason, is a finding.
 - Jobs for a second agent (for example Codex) only when the user wants that.
 
