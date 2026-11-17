@@ -86,7 +86,7 @@ Like the garden above: the checks are the fence. Good patterns grow in neat rows
 | `STAND.md` | Says what is open or decided but not built yet ("Stand" means "status"). |
 | `CLAUDE.md` | Only with Claude Code: points to `AGENTS.md`. |
 | `scripts/check-ops.mjs` | Finds comments without a reason, extra Markdown files, credentials, skipped tests and wrong paths in `AGENTS.md`. |
-| `scripts/githooks/pre-commit` | Runs `check-ops` and lint before every commit. |
+| `scripts/githooks/pre-commit` | Runs `check-ops` and lint before every commit. Rejects changes to `AGENTS.md` and `STAND.md` outside `main`. |
 | `scripts/githooks/post-merge` and `post-checkout` | Remove merged worktrees and branches after the merge to `main`. |
 | Approvals | The agent asks before push, pull request, merge and release. With Claude Code via `.claude/settings.json`, with Codex via the Codex settings. |
 | `.github/workflows/ci.yml` | Checks every push on GitHub. |

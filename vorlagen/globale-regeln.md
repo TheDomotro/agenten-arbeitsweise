@@ -23,7 +23,8 @@ Gilt, wenn dein Werkzeug Sub-Agenten starten kann. Sonst arbeitest du alles selb
 - So viele Builder wie unabhängige Bahnen ohne gemeinsame Dateien. Gemeinsam genutzte Dinge (laufender Dienst, Browser, Merge auf `main`) laufen nacheinander.
 - Builder arbeiten in eigenen Arbeitskopien (Worktrees) auf eigenem Zweig. Nach dem Merge entfernen die Git-Hooks gemergte Arbeitskopien und Zweige automatisch; der Verlauf steht in Git.
 - Je Paket ein Prüfer, nur lesend, am besten mit hoher Denktiefe. Ein gelöschter oder gelockerter Test oder ein ausgelassener Test ohne Begründung ist ein Fund.
-- `AGENTS.md` und `STAND.md` ändert am besten nur der Hauptchat auf `main`. Builder und Prüfer nennen nötige Änderungen in ihrem Bericht. So entstehen keine Konflikte zwischen parallelen Paketen.
+- Builder schreiben nur in ihrer Arbeitskopie und liefern ihr Ergebnis als Commit auf ihrem Zweig: kein Merge, kein Push. Die Commit-Nachricht nennt, was geändert ist, welche Prüfungen liefen und was offen ist. Nur der Hauptchat merged auf `main`.
+- `AGENTS.md` und `STAND.md` ändert nur der Hauptchat auf `main`; der Git-Hook lehnt Änderungen auf anderen Zweigen ab. Builder und Prüfer nennen nötige Änderungen in ihrem Bericht. So entstehen keine Konflikte zwischen parallelen Paketen.
 
 ## Doku und Code
 

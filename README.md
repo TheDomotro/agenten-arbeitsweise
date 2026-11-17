@@ -86,7 +86,7 @@ Wie im Garten oben: Die Prüfungen sind der Zaun. Gute Muster wachsen in klaren 
 | `STAND.md` | Sagt, was offen und entschieden, aber noch nicht gebaut ist. |
 | `CLAUDE.md` | Nur bei Claude Code: verweist auf `AGENTS.md`. |
 | `scripts/check-ops.mjs` | Findet Kommentare ohne Grund, zusätzliche Markdown-Dateien, Zugangsdaten, ausgelassene Tests und falsche Pfade in `AGENTS.md`. |
-| `scripts/githooks/pre-commit` | Lässt vor jedem Commit `check-ops` und Lint laufen. |
+| `scripts/githooks/pre-commit` | Lässt vor jedem Commit `check-ops` und Lint laufen. Lehnt Änderungen an `AGENTS.md` und `STAND.md` außerhalb von `main` ab. |
 | `scripts/githooks/post-merge` und `post-checkout` | Entfernen nach dem Merge auf `main` gemergte Arbeitskopien und Zweige. |
 | Freigaben | Der Agent fragt vor Push, Pull Request, Merge und Release. Bei Claude Code über `.claude/settings.json`, bei Codex über die Codex-Einstellungen. |
 | `.github/workflows/ci.yml` | Prüft jeden Push auf GitHub. |

@@ -23,7 +23,8 @@ Applies if your tool can start sub-agents. Otherwise you do everything yourself,
 - As many builders as there are independent lanes without shared files. Shared things (running service, browser, merge to `main`) run one after another.
 - Builders work in their own worktrees on their own branch. After the merge, the Git hooks remove merged worktrees and branches automatically; Git keeps the history.
 - One reviewer per package, read-only, ideally with high reasoning effort. A deleted or weakened test, or a skipped test without a reason, is a finding.
-- `AGENTS.md` and `STAND.md` are best changed only by the main chat on `main`. Builders and reviewers name needed changes in their report. This avoids conflicts between parallel packages.
+- Builders write only in their worktree and deliver their result as a commit on their branch: no merge, no push. The commit message says what changed, which checks ran and what is open. Only the main chat merges to `main`.
+- `AGENTS.md` and `STAND.md` are changed only by the main chat on `main`; the Git hook rejects changes on other branches. Builders and reviewers name needed changes in their report. This avoids conflicts between parallel packages.
 
 ## Docs and code
 

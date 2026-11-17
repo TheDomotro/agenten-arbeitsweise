@@ -1,4 +1,9 @@
 #!/bin/sh
+branch=$(git symbolic-ref --quiet --short HEAD)
+if [ "$branch" != "main" ] && git diff --cached --name-only | grep -qxE 'AGENTS\.md|STAND\.md'; then
+  echo "AGENTS.md und STAND.md ändert nur der Hauptchat auf main. Änderung zurücknehmen und im Bericht nennen." >&2
+  exit 1
+fi
 node scripts/check-ops.mjs || { echo "check-ops rot: Funde oben an der Ursache beheben." >&2; exit 1; }
 lint="<LINT-BEFEHL>"
 sh -c "$lint" || { echo "Lint rot: '$lint' ausführen und Funde an der Ursache beheben." >&2; exit 1; }
