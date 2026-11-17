@@ -68,7 +68,7 @@ Ask all questions in one message, each with your recommendation. Skip questions 
 - Copy `AGENTS.md` and `STAND.md` from `vorlagen/` into the project.
 - With Claude Code: also copy `vorlagen/CLAUDE.md` into the project. It contains only `@AGENTS.md`, because Claude Code reads `CLAUDE.md` on its own. With Codex, skip `CLAUDE.md`.
 - Fill `AGENTS.md` with what you find in the project: structure, start command, folders under "Wo liegt was", check commands. Nothing the code already shows. Keep it short, as a guide under about 200 lines.
-- `STAND.md`: move open points from existing notes. Enter the goal from question 1 as a first plan with package blocks.
+- `STAND.md`: move open points from existing notes. Enter the goal from question 1 as the first open point. For larger projects the template has an optional pattern with packages.
 - Translate headings and text into the user's language. `check-ops` recognizes "Wo liegt was" and "Where things are"; for another language, add the heading there.
 
 ## 6. Add the checks
@@ -100,5 +100,5 @@ Ask all questions in one message, each with your recommendation. Skip questions 
 
 - Commit: first the setup, then the cleanup as a separate commit. The commit message states the result.
 - Push only after a yes.
-- Report to the user in 3–5 sentences: what is set up and how to work from now on (state a goal, the agent plans packages in `STAND.md`, corrections become checks). Point to the first plan in `STAND.md` and to open points.
+- Report to the user in 3–5 sentences: what is set up and how to work from now on (state a goal, open points live in `STAND.md`, corrections become checks). Point to the first plan in `STAND.md` and to open points.
 - Delete the temporary folder with the templates.

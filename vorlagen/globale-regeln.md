@@ -17,7 +17,7 @@ Diese Regeln sind eine Richtschnur für den Alltag. Fest geprüft wird nur, was 
 
 ## Agenten
 
-Gilt, wenn dein Werkzeug Sub-Agenten starten kann. Sonst arbeitest du die Pakete selbst nacheinander ab.
+Gilt, wenn dein Werkzeug Sub-Agenten starten kann. Sonst arbeitest du alles selbst nacheinander ab. Pakete sind ein Hilfsmittel für große Vorhaben, keine Pflicht.
 
 - Der Hauptchat plant, verteilt, prüft und merged auf `main`. Kleines macht er selbst. Lesen, Suchen und Pakete gibt er an Sub-Agenten. Große Dateien und lange Ausgaben lässt er besser von Sub-Agenten lesen, damit sein Kontext klein bleibt.
 - So viele Builder wie unabhängige Bahnen ohne gemeinsame Dateien. Gemeinsam genutzte Dinge (laufender Dienst, Browser, Merge auf `main`) laufen nacheinander.

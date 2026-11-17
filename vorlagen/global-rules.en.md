@@ -17,7 +17,7 @@ These rules are guidance for everyday work. Only what prevents real damage is en
 
 ## Agents
 
-Applies if your tool can start sub-agents. Otherwise you work through the packages yourself, one after another.
+Applies if your tool can start sub-agents. Otherwise you do everything yourself, one step after another. Packages are a tool for large projects, not a must.
 
 - The main chat plans, delegates, reviews and merges to `main`. It does small things itself. Reading, searching and work packages go to sub-agents. Large files and long output are better read by sub-agents, so the main chat's context stays small.
 - As many builders as there are independent lanes without shared files. Shared things (running service, browser, merge to `main`) run one after another.

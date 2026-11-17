@@ -68,7 +68,7 @@ Stelle alle Fragen in einer Nachricht, jede mit deiner Empfehlung. Lass Fragen w
 - `AGENTS.md` und `STAND.md` aus `vorlagen/` ins Projekt kopieren.
 - Bei Claude Code: zusätzlich `vorlagen/CLAUDE.md` ins Projekt kopieren. Sie enthält nur `@AGENTS.md`, weil Claude Code von sich aus `CLAUDE.md` liest. Bei Codex entfällt `CLAUDE.md`.
 - `AGENTS.md` mit dem füllen, was du im Projekt findest: Aufbau, Startbefehl, Ordner unter „Wo liegt was“, Prüfbefehle. Nichts, was der Code schon zeigt. Kurz halten, Richtwert unter etwa 200 Zeilen.
-- `STAND.md`: Offene Punkte aus bestehenden Notizen übernehmen. Das Ziel aus Frage 1 als ersten Plan mit Paketblöcken eintragen.
+- `STAND.md`: Offene Punkte aus bestehenden Notizen übernehmen. Das Ziel aus Frage 1 als ersten offenen Punkt eintragen. Für größere Vorhaben gibt es in der Vorlage ein Muster mit Paketen; es ist freiwillig.
 - Ist der Nutzer nicht deutschsprachig: Überschriften und Texte in seine Sprache übersetzen. `check-ops` erkennt „Wo liegt was“ und „Where things are“; für eine andere Sprache die Überschrift dort ergänzen.
 
 ## 6. Prüfungen einbauen
@@ -100,5 +100,5 @@ Stelle alle Fragen in einer Nachricht, jede mit deiner Empfehlung. Lass Fragen w
 
 - Committen: erst die Einrichtung, dann das Aufräumen als eigener Commit. Die Commit-Nachricht nennt das Ergebnis.
 - Pushen nur nach Ja.
-- Bericht an den Nutzer in 3–5 Sätzen: was eingerichtet ist, wie man ab jetzt arbeitet (Ziel nennen, der Agent plant Pakete in `STAND.md`, Korrekturen werden Prüfungen). Dazu der Hinweis auf den ersten Plan in `STAND.md` und offene Punkte.
+- Bericht an den Nutzer in 3–5 Sätzen: was eingerichtet ist, wie man ab jetzt arbeitet (Ziel nennen, Offenes steht in `STAND.md`, Korrekturen werden Prüfungen). Dazu der Hinweis auf den ersten Plan in `STAND.md` und offene Punkte.
 - Den temporären Ordner mit den Vorlagen löschen.

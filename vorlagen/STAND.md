@@ -4,7 +4,7 @@ Nur Offenes und Entschiedenes, das noch nicht gebaut ist. Gebautes löschen, sob
 
 ## Jetzt dran
 
-### Plan: <Ziel in einem Satz>
+### Plan: <Ziel in einem Satz> (freiwillig, für größere Vorhaben mit mehreren Agenten)
 
 **Für alle Builder:** <3–6 Punkte: Zweig von `main`, möglichst nur eigene Dateien ändern, check-ops, Lint und Tests grün, Änderungen an AGENTS.md und STAND.md im Bericht nennen, Bericht mit Ergebnis, Prüfungen, offenen Punkten.>
 

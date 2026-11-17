@@ -83,7 +83,7 @@ Wie im Garten oben: Die Prüfungen sind der Zaun. Gute Muster wachsen in klaren 
 |---|---|
 | Globale Regeln | Gelten für alle deine Projekte und stehen genau einmal in einer Datei: bei Claude Code in `~/.claude/CLAUDE.md`, bei Codex in `~/.codex/AGENTS.md`. |
 | `AGENTS.md` | Sagt kurz, wie ihr im Projekt arbeitet und wo was liegt. |
-| `STAND.md` | Sagt, was offen ist, als Plan mit Paketen. |
+| `STAND.md` | Sagt, was offen und entschieden, aber noch nicht gebaut ist. |
 | `CLAUDE.md` | Nur bei Claude Code: verweist auf `AGENTS.md`. |
 | `scripts/check-ops.mjs` | Findet Kommentare ohne Grund, zusätzliche Markdown-Dateien, Zugangsdaten, ausgelassene Tests und falsche Pfade in `AGENTS.md`. |
 | `scripts/githooks/pre-commit` | Lässt vor jedem Commit `check-ops` und Lint laufen. |
@@ -98,7 +98,7 @@ Wie im Garten oben: Die Prüfungen sind der Zaun. Gute Muster wachsen in klaren 
 
 ## Wie arbeitest du danach?
 
-Du nennst ein Ziel. Der Agent schreibt einen Plan mit Paketen in `STAND.md` und arbeitet ihn ab. Ein Beispiel aus dem Alltag:
+Du arbeitest wie gewohnt mit deinem Agenten. Der Unterschied zeigt sich bei Fehlern. Ein Beispiel aus dem Alltag:
 
 1. Der Agent baut eine Funktion und schreibt zum Testen `console.log` in den Code. Er vergisst, es zu löschen.
 2. Du sagst: „Keine Debug-Ausgaben im Code.“
@@ -112,9 +112,8 @@ Du nennst ein Ziel. Der Agent schreibt einen Plan mit Paketen in `STAND.md` und 
 2. **Regeln als Prüfung, nicht als Text.** Jede Korrektur wird eine Lint-Regel, ein Typ, ein Test oder eine Zeile in `check-ops`.
 3. **Fast keine Kommentare.** Erlaubt ist nur ein `WARUM:` für einen Grund, den der Code nicht zeigt.
 4. **Genau zwei Doku-Dateien.** `AGENTS.md` sagt, wie ihr arbeitet. `STAND.md` sagt, was offen ist.
-5. **Klare Pakete.** Ein Plan teilt die Arbeit in Pakete von 30–90 Minuten. Ein Prüfer sieht jedes Paket durch.
-6. **Prüfen durch Ausführen.** Tests, Browser und Screenshots zeigen, ob es geht. Rote Tests werden an der Ursache behoben.
-7. **Einfach und sicher.** Standardwerkzeuge. Pushes, Deployments und Löschen nur mit deiner Freigabe.
+5. **Prüfen durch Ausführen.** Tests, Browser und Screenshots zeigen, ob es geht. Rote Tests werden an der Ursache behoben.
+6. **Einfach und sicher.** Standardwerkzeuge. Pushes, Deployments und Löschen nur mit deiner Freigabe.
 
 ## Wer macht was?
 

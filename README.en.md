@@ -83,7 +83,7 @@ Like the garden above: the checks are the fence. Good patterns grow in neat rows
 |---|---|
 | Global rules | Apply to all your projects and live exactly once in one file: with Claude Code in `~/.claude/CLAUDE.md`, with Codex in `~/.codex/AGENTS.md`. |
 | `AGENTS.md` | Says briefly how you work in the project and where things are. |
-| `STAND.md` | Says what is open, as a plan with packages ("Stand" means "status"). |
+| `STAND.md` | Says what is open or decided but not built yet ("Stand" means "status"). |
 | `CLAUDE.md` | Only with Claude Code: points to `AGENTS.md`. |
 | `scripts/check-ops.mjs` | Finds comments without a reason, extra Markdown files, credentials, skipped tests and wrong paths in `AGENTS.md`. |
 | `scripts/githooks/pre-commit` | Runs `check-ops` and lint before every commit. |
@@ -98,7 +98,7 @@ Like the garden above: the checks are the fence. Good patterns grow in neat rows
 
 ## How do you work afterwards?
 
-You name a goal. The agent writes a plan with packages in `STAND.md` and works through it. An everyday example:
+You work with your agent as usual. The difference shows when something goes wrong. An everyday example:
 
 1. The agent builds a feature and adds `console.log` to the code for testing. It forgets to remove it.
 2. You say: "No debug output in the code."
@@ -112,9 +112,8 @@ You name a goal. The agent writes a plan with packages in `STAND.md` and works t
 2. **Rules as checks, not as text.** Every correction becomes a lint rule, a type, a test or a line in `check-ops`.
 3. **Almost no comments.** Only a `WHY:` for a reason the code does not show.
 4. **Exactly two doc files.** `AGENTS.md` says how you work. `STAND.md` says what is open.
-5. **Clear packages.** A plan splits the work into packages of 30–90 minutes. A reviewer checks every package.
-6. **Verify by running.** Tests, browser and screenshots show whether it works. Red tests get fixed at the cause.
-7. **Simple and safe.** Standard tools. Pushes, deployments and deletions only with your approval.
+5. **Verify by running.** Tests, browser and screenshots show whether it works. Red tests get fixed at the cause.
+6. **Simple and safe.** Standard tools. Pushes, deployments and deletions only with your approval.
 
 ## Who does what?
 
