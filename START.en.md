@@ -56,7 +56,7 @@ Ask all questions in one message, each with your recommendation. Skip questions 
 
 ## 4. Add the global rules
 
-- Claude Code: `~/.claude/CLAUDE.md`. Codex: `~/.codex/AGENTS.md`. If the user uses both, both get the same base part.
+- The rules live exactly once in `~/.codex/AGENTS.md` (Codex reads it directly). `~/.claude/CLAUDE.md` contains only the line `@~/.codex/AGENTS.md`, so Claude Code reads the same file. Do this even if the user only uses one of the two agents.
 - Source: `vorlagen/global-rules.en.md` (English) or `vorlagen/globale-regeln.md` (German). Fill the `<…>` placeholders.
 - If the file exists: read it, merge instead of overwriting, keep duplicates only once. Show the user the change as a diff and get a yes.
 

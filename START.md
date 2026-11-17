@@ -56,7 +56,7 @@ Stelle alle Fragen in einer Nachricht, jede mit deiner Empfehlung. Lass Fragen w
 
 ## 4. Globale Regeln übernehmen
 
-- Claude Code: `~/.claude/CLAUDE.md`. Codex: `~/.codex/AGENTS.md`. Nutzt der Nutzer beide, beide mit demselben Grundteil.
+- Die Regeln stehen genau einmal in `~/.codex/AGENTS.md` (Codex liest sie direkt). `~/.claude/CLAUDE.md` enthält nur die Zeile `@~/.codex/AGENTS.md`, damit Claude Code dieselbe Datei liest. Das gilt auch, wenn der Nutzer nur einen der beiden Agenten nutzt.
 - Quelle: `vorlagen/globale-regeln.md` (deutsch) oder `vorlagen/global-rules.en.md` (englisch). Platzhalter `<…>` füllen.
 - Gibt es die Datei schon: lesen, zusammenführen statt überschreiben, Doppeltes nur einmal behalten. Zeige dem Nutzer die Änderung als Diff und hole ein Ja.
 

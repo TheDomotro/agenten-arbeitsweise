@@ -81,7 +81,7 @@ Wie im Garten oben: Die Prüfungen sind der Zaun. Gute Muster wachsen in klaren 
 
 | Datei oder Einstellung | Was sie tut |
 |---|---|
-| `~/.claude/CLAUDE.md` oder `~/.codex/AGENTS.md` | Globale Regeln für alle deine Projekte. |
+| `~/.codex/AGENTS.md` | Globale Regeln für alle deine Projekte, genau einmal. `~/.claude/CLAUDE.md` verweist nur darauf. |
 | `AGENTS.md` | Sagt, wie ihr im Projekt arbeitet und wo was liegt, in höchstens 80 Zeilen. |
 | `STAND.md` | Sagt, was offen ist, als Plan mit Paketen. |
 | `CLAUDE.md` | Verweist nur auf `AGENTS.md`. |

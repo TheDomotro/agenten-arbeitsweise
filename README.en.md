@@ -81,7 +81,7 @@ Like the garden above: the checks are the fence. Good patterns grow in neat rows
 
 | File or setting | What it does |
 |---|---|
-| `~/.claude/CLAUDE.md` or `~/.codex/AGENTS.md` | Global rules for all your projects. |
+| `~/.codex/AGENTS.md` | Global rules for all your projects, written once. `~/.claude/CLAUDE.md` only points to it. |
 | `AGENTS.md` | Says how you work in the project and where things are, in at most 80 lines. |
 | `STAND.md` | Says what is open, as a plan with packages ("Stand" means "status"). |
 | `CLAUDE.md` | Only points to `AGENTS.md`. |
