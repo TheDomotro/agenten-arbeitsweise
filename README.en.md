@@ -24,7 +24,7 @@ A guide for coding agents (Claude Code or Codex). You give your agent the link. 
 
 Copy this sentence into your agent:
 
-> Set up my project in this way of working: https://github.com/OWNER/agenten-arbeitsweise. Read START.en.md first and follow the steps.
+> Set up my project in this way of working: https://github.com/TheDomotro/agenten-arbeitsweise. Read START.en.md first and follow the steps.
 
 The agent:
 

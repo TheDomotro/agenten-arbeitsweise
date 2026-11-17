@@ -24,7 +24,7 @@ Eine Anleitung für Coding-Agenten (Claude Code oder Codex). Du gibst deinem Age
 
 Kopiere diesen Satz in deinen Agenten:
 
-> Richte mein Projekt nach dieser Arbeitsweise ein: https://github.com/OWNER/agenten-arbeitsweise. Lies zuerst START.md und folge dem Ablauf.
+> Richte mein Projekt nach dieser Arbeitsweise ein: https://github.com/TheDomotro/agenten-arbeitsweise. Lies zuerst START.md und folge dem Ablauf.
 
 Der Agent:
 
