@@ -3,15 +3,15 @@
 > [!IMPORTANT]
 > **Dein Auftrag**
 >
-> - **Wer du bist:** ein Coding-Agent (Claude Code, Codex oder ähnlich). Ein Mensch hat dich in seinem Projektordner gestartet und dir diesen Link gegeben.
+> - **Wer du bist:** ein Coding-Agent, also Claude Code oder Codex (oder ein ähnlicher Agent). Ein Mensch hat dich in seinem Projektordner gestartet und dir diesen Link gegeben.
 > - **Dein Ziel:** sein Projekt nach dieser Arbeitsweise einrichten: globale Regeln, `AGENTS.md`, `STAND.md`, Prüfungen, Git-Hooks, Freigaben und CI.
 > - **Nie ohne Ja:** etwas ändern vor Schritt 0, Dateien löschen, pushen, ein GitHub-Repository anlegen, GitHub-Einstellungen ändern, globale Regeldateien überschreiben. Konten, Passwörter und Codes macht immer der Mensch.
 > - **Vorlagen holen:** einzelne Dateien als Rohtext unter `https://raw.githubusercontent.com/TheDomotro/agenten-arbeitsweise/main/<pfad>`. Oder alles in einen temporären Ordner außerhalb des Projekts: `git clone --depth 1 https://github.com/TheDomotro/agenten-arbeitsweise <temporärer Ordner>`. Kopiere nur einzelne Dateien ins Projekt, nie das ganze Repository.
 > - **Fertig, wenn:** `check-ops`, Lint und Tests grün sind, Einrichtung und Aufräumen als zwei Commits vorliegen, der Mensch deinen Bericht aus Schritt 9 hat und der temporäre Ordner gelöscht ist.
 
-Die Vorlagen: `vorlagen/globale-regeln.md`, `vorlagen/global-rules.en.md`, `vorlagen/AGENTS.md`, `vorlagen/STAND.md`, `vorlagen/CLAUDE.md`, `vorlagen/claude-settings.json`, `vorlagen/ci.yml`, `vorlagen/scripts/check-ops.mjs`, `vorlagen/scripts/githooks/pre-commit`, `vorlagen/scripts/githooks/post-merge`, `vorlagen/scripts/githooks/post-checkout`.
+Die Vorlagen liegen in `vorlagen/`: `globale-regeln.md`, `global-rules.en.md`, `AGENTS.md`, `STAND.md`, `CLAUDE.md`, `claude-settings.json`, `ci.yml`, `scripts/check-ops.mjs`, `scripts/githooks/pre-commit`, `scripts/githooks/post-merge`, `scripts/githooks/post-checkout`.
 
-Arbeite die Schritte der Reihe nach ab. Sprich in der Sprache des Nutzers, in einfachen Sätzen. Die Regeln selbst stehen in `vorlagen/globale-regeln.md`; dieser Ablauf sagt nur, wie du sie einrichtest.
+Arbeite die Schritte der Reihe nach ab. Sprich in der Sprache des Nutzers, in einfachen Sätzen. Die Regeln selbst stehen in `vorlagen/globale-regeln.md`; dieser Ablauf sagt nur, wie du sie einrichtest. Wo sich Claude Code und Codex unterscheiden, steht beides da. Mach nur den Teil für den Agenten, der du bist.
 
 ## 0. Erklären und Erlaubnis holen
 
@@ -44,7 +44,7 @@ Stelle alle Fragen in einer Nachricht, jede mit deiner Empfehlung. Lass Fragen w
 1. Was ist das Ziel des Projekts, in ein bis zwei Sätzen?
 2. Neues oder bestehendes Projekt? Welche Sprache und welcher Stack? (Empfehlung aus Schritt 1 nennen.)
 3. GitHub: schon vorhanden? Soll das Repository privat oder öffentlich sein? (Empfehlung: privat.)
-4. Wie streng? (Empfehlung: alles, also Hook, CI und Aufräumen.)
+4. Was soll ich einrichten? (Empfehlung: alles, also Hook, CI und Aufräumen. Weniger geht auch, zum Beispiel ohne CI.)
 
 ## 3. Git und GitHub einrichten
 
@@ -56,26 +56,31 @@ Stelle alle Fragen in einer Nachricht, jede mit deiner Empfehlung. Lass Fragen w
 
 ## 4. Globale Regeln übernehmen
 
-- Die Regeln stehen genau einmal in `~/.codex/AGENTS.md` (Codex liest sie direkt). `~/.claude/CLAUDE.md` enthält nur die Zeile `@~/.codex/AGENTS.md`, damit Claude Code dieselbe Datei liest. Das gilt auch, wenn der Nutzer nur einen der beiden Agenten nutzt.
 - Quelle: `vorlagen/globale-regeln.md` (deutsch) oder `vorlagen/global-rules.en.md` (englisch). Platzhalter `<…>` füllen.
+- Ziel ist genau eine Datei, die dein Agent von sich aus liest. Bei Claude Code: `~/.claude/CLAUDE.md`. Bei Codex: `~/.codex/AGENTS.md`.
 - Gibt es die Datei schon: lesen, zusammenführen statt überschreiben, Doppeltes nur einmal behalten. Zeige dem Nutzer die Änderung als Diff und hole ein Ja.
+
+> [!NOTE]
+> Nur falls der Nutzer beide Agenten nutzt: Die Regeln stehen trotzdem nur in einer der beiden Dateien. Die andere verweist darauf. Claude Code kann zum Beispiel mit der Zeile `@~/.codex/AGENTS.md` in `~/.claude/CLAUDE.md` die Codex-Datei einbinden.
 
 ## 5. Projektdoku anlegen
 
-- `AGENTS.md`, `STAND.md` und `CLAUDE.md` aus `vorlagen/` ins Projekt kopieren.
-- `AGENTS.md` mit dem füllen, was du im Projekt findest: Aufbau, Startbefehl, Ordner unter „Wo liegt was“, Prüfbefehle. Nichts, was der Code schon zeigt.
+- `AGENTS.md` und `STAND.md` aus `vorlagen/` ins Projekt kopieren.
+- Bei Claude Code: zusätzlich `vorlagen/CLAUDE.md` ins Projekt kopieren. Sie enthält nur `@AGENTS.md`, weil Claude Code von sich aus `CLAUDE.md` liest. Bei Codex entfällt `CLAUDE.md`.
+- `AGENTS.md` mit dem füllen, was du im Projekt findest: Aufbau, Startbefehl, Ordner unter „Wo liegt was“, Prüfbefehle. Nichts, was der Code schon zeigt. Kurz halten, Richtwert unter etwa 200 Zeilen.
 - `STAND.md`: Offene Punkte aus bestehenden Notizen übernehmen. Das Ziel aus Frage 1 als ersten Plan mit Paketblöcken eintragen.
-- Ist der Nutzer nicht deutschsprachig: Überschriften und Texte in seine Sprache übersetzen. Die Überschrift „Wo liegt was“ dann auch in `check-ops.mjs` anpassen.
+- Ist der Nutzer nicht deutschsprachig: Überschriften und Texte in seine Sprache übersetzen. `check-ops` erkennt „Wo liegt was“ und „Where things are“; für eine andere Sprache die Überschrift dort ergänzen.
 
 ## 6. Prüfungen einbauen
 
-- `vorlagen/scripts/check-ops.mjs` nach `scripts/check-ops.mjs` kopieren. Passe nur `commentMarkers` und `projectRules` oben an den Stack an.
+- `vorlagen/scripts/check-ops.mjs` nach `scripts/check-ops.mjs` kopieren. Passe nur `commentMarkers` und `projectRules` oben an den Stack an. Übersetze die Meldungen, wenn der Nutzer kein Deutsch liest.
 - Linter und Formatter des Stacks mit Standardeinstellungen einrichten (zum Beispiel ESLint und Prettier, ruff, clippy und rustfmt, gofmt und go vet).
-- `pre-commit`, `post-merge` und `post-checkout` aus `vorlagen/scripts/githooks/` nach `scripts/githooks/` kopieren. In `pre-commit` `<LINT-BEFEHL>` ersetzen. Alle drei ausführbar machen. Dann `git config core.hooksPath scripts/githooks`. Heißt der Hauptzweig nicht `main`: in allen drei anpassen.
-- Claude Code: `vorlagen/claude-settings.json` nach `.claude/settings.json` kopieren. Gibt es die Datei schon: zusammenführen. Sie lässt vor Push, Pull Request, Merge und Release fragen und startet Arbeitskopien vom lokalen Stand.
-- Codex: Stelle in den Codex-Einstellungen ein, dass Push und Merge nur nach Rückfrage laufen.
+- `pre-commit`, `post-merge` und `post-checkout` aus `vorlagen/scripts/githooks/` nach `scripts/githooks/` kopieren. In `pre-commit` `<LINT-BEFEHL>` ersetzen. Alle drei ausführbar machen. Dann `git config core.hooksPath scripts/githooks`. Heißt der Hauptzweig nicht `main`: in `post-merge` anpassen.
+- Freigaben für Push und Merge:
+  - Bei Claude Code: `vorlagen/claude-settings.json` nach `.claude/settings.json` kopieren. Gibt es die Datei schon: zusammenführen. Sie lässt vor Push, Pull Request, Merge und Release fragen und startet Arbeitskopien vom lokalen Stand.
+  - Bei Codex: In den Codex-Einstellungen festlegen, dass Push und Merge nur nach Rückfrage laufen.
 - `vorlagen/ci.yml` nach `.github/workflows/ci.yml` kopieren, die Platzhalter durch Setup-, Lint- und Testbefehl ersetzen.
-- Jede neue Prüfung hat eine Fehlermeldung, die sagt, was zu tun ist.
+- Jede neue Prüfung hat eine freundliche Fehlermeldung, die sagt, was stattdessen zu tun ist.
 
 ## 7. Aufräumen (eigener Commit)
 

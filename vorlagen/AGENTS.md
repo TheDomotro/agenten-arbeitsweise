@@ -19,7 +19,7 @@ Nur Ordner und Namensmuster, keine Einzeldateien. `node scripts/check-ops.mjs` p
 ## Agenten
 
 - Hauptchat: plant, schneidet Pakete aus STAND.md, verteilt, prüft und merged auf `main`.
-- Builder: je Paket ein Zweig und ein Worktree unter `.claude/worktrees/`. Bekommt nur den gemeinsamen Teil und seinen Paketblock aus STAND.md.
+- Builder: je Paket ein Zweig und eine eigene Arbeitskopie (Worktree). Bekommt nur den gemeinsamen Teil und seinen Paketblock aus STAND.md.
 - Prüfer: je Paket einer, nur lesend.
 
 ## Prüfen

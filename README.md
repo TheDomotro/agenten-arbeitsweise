@@ -28,7 +28,7 @@
 Richte mein Projekt nach dieser Arbeitsweise ein: https://github.com/TheDomotro/agenten-arbeitsweise. Lies zuerst START.md und folge dem Ablauf.
 ```
 
-Der Agent erklärt kurz, was er vorhat, stellt höchstens vier Fragen mit Empfehlung und richtet dann alles ein. Vor dem Löschen, Pushen und vor Änderungen auf GitHub fragt er dich.
+Der Agent erklärt kurz, was er vorhat, stellt höchstens vier Fragen mit Empfehlung und richtet dann alles ein.
 
 ## Warum?
 
@@ -81,14 +81,14 @@ Wie im Garten oben: Die Prüfungen sind der Zaun. Gute Muster wachsen in klaren 
 
 | Datei oder Einstellung | Was sie tut |
 |---|---|
-| `~/.codex/AGENTS.md` | Globale Regeln für alle deine Projekte, genau einmal. `~/.claude/CLAUDE.md` verweist nur darauf. |
-| `AGENTS.md` | Sagt, wie ihr im Projekt arbeitet und wo was liegt, in höchstens 80 Zeilen. |
+| Globale Regeln | Gelten für alle deine Projekte und stehen genau einmal in einer Datei: bei Claude Code in `~/.claude/CLAUDE.md`, bei Codex in `~/.codex/AGENTS.md`. |
+| `AGENTS.md` | Sagt kurz, wie ihr im Projekt arbeitet und wo was liegt. |
 | `STAND.md` | Sagt, was offen ist, als Plan mit Paketen. |
-| `CLAUDE.md` | Verweist nur auf `AGENTS.md`. |
+| `CLAUDE.md` | Nur bei Claude Code: verweist auf `AGENTS.md`. |
 | `scripts/check-ops.mjs` | Findet Kommentare ohne Grund, zusätzliche Markdown-Dateien, Zugangsdaten, ausgelassene Tests und falsche Pfade in `AGENTS.md`. |
-| `scripts/githooks/pre-commit` | Lässt vor jedem Commit `check-ops` und Lint laufen und schützt `AGENTS.md` und `STAND.md` auf Nebenzweigen. |
+| `scripts/githooks/pre-commit` | Lässt vor jedem Commit `check-ops` und Lint laufen. |
 | `scripts/githooks/post-merge` und `post-checkout` | Entfernen nach dem Merge auf `main` gemergte Arbeitskopien und Zweige. |
-| `.claude/settings.json` | Lässt Claude Code vor Push, Pull Request, Merge und Release fragen und startet Arbeitskopien vom lokalen Stand. |
+| Freigaben | Der Agent fragt vor Push, Pull Request, Merge und Release. Bei Claude Code über `.claude/settings.json`, bei Codex über die Codex-Einstellungen. |
 | `.github/workflows/ci.yml` | Prüft jeden Push auf GitHub. |
 | Git und GitHub | `fetch.prune` räumt entfernte Zweige lokal weg, GitHub löscht Zweige nach dem Merge. |
 | Linter und Formatter | Standardwerkzeuge deines Stacks, zum Beispiel ESLint, ruff oder clippy. |
@@ -127,7 +127,7 @@ Du nennst ein Ziel. Der Agent schreibt einen Plan mit Paketen in `STAND.md` und 
 | Räumt auf und zeigt vorher, was er löscht | |
 
 > [!NOTE]
-> Die Anleitung funktioniert mit Claude Code und Codex. Andere Coding-Agenten mit Zugriff auf Terminal und Dateien können ihr ebenso folgen.
+> Die Anleitung ist für Claude Code oder Codex geschrieben, je nachdem, welchen Agenten du nutzt. Andere Coding-Agenten mit Zugriff auf Terminal und Dateien können ihr ebenso folgen.
 
 ## Lizenz
 

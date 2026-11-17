@@ -6,7 +6,7 @@ Nur Offenes und Entschiedenes, das noch nicht gebaut ist. Gebautes löschen, sob
 
 ### Plan: <Ziel in einem Satz>
 
-**Für alle Builder:** <3–6 Punkte: Zweig von `main`, nur eigene Dateien ändern, check-ops, Lint und Tests grün, AGENTS.md und STAND.md nicht ändern, Bericht mit Ergebnis, Prüfungen, offenen Punkten.>
+**Für alle Builder:** <3–6 Punkte: Zweig von `main`, möglichst nur eigene Dateien ändern, check-ops, Lint und Tests grün, Änderungen an AGENTS.md und STAND.md im Bericht nennen, Bericht mit Ergebnis, Prüfungen, offenen Punkten.>
 
 **Bahnen** (ohne gemeinsame Dateien, laufen parallel):
 - Bahn A: Paket 1, dann Paket 3

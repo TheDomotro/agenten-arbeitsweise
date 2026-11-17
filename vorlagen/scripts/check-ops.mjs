@@ -39,8 +39,7 @@ const findings = [];
 const add = (where, message) => findings.push(`${where}  ${message}`);
 
 for (const file of tracked) {
-  if (/\.md$/i.test(file) && !allowedMarkdown.test(file)) add(file, 'Keine weiteren Markdown-Dateien. Inhalt nach AGENTS.md, STAND.md oder in die Commit-Nachricht übertragen, Belege nach .runtime/, dann die Datei löschen.');
-  if (/\d{4}-\d{2}-\d{2}/.test(file)) add(file, 'Kein Datum im Dateinamen. Der Verlauf steht in Git.');
+  if (/\.md$/i.test(file) && !allowedMarkdown.test(file)) add(file, 'Zusätzliche Markdown-Datei. Die Doku lebt in AGENTS.md und STAND.md: Inhalt dorthin oder in eine Commit-Nachricht übertragen, Belege nach .runtime/, dann die Datei löschen.');
   if (secretFiles.test(file)) add(file, 'Schlüssel- oder .env-Datei in Git. Mit `git rm --cached` entfernen und in .gitignore eintragen. Ist der Schlüssel echt, ihn beim Anbieter ersetzen.');
 }
 
@@ -60,7 +59,7 @@ for (const file of tracked) {
     const comment = commentText(line, markers);
     if (comment === undefined || (index === 0 && line.startsWith('#!'))) return;
     if (!whyMarker.test(comment) && !allowedCommentContent.test(comment) && comment !== '') {
-      add(where, 'Kommentar ohne WARUM:. Löschen, wenn der Code es zeigt. Beschreibt er eine Bedingung, daraus einen Test machen. Sonst mit WARUM: den Grund nennen.');
+      add(where, 'Kommentar ohne WARUM:. Zeigt der Code das schon, einfach löschen. Gibt es einen Grund, den der Code nicht zeigt, den Kommentar mit „WARUM:“ beginnen. Beschreibt er eine Bedingung („muss so bleiben“), daraus besser einen Test machen.');
     }
   });
 }
@@ -76,11 +75,8 @@ const agentsPath = resolve(root, docDir, 'AGENTS.md');
 if (!existsSync(agentsPath)) add(`${docDir}/AGENTS.md`, 'AGENTS.md fehlt. Aus der Vorlage anlegen.');
 else {
   const agents = readFileSync(agentsPath, 'utf8');
-  const count = agents.trimEnd().split('\n').length;
-  if (count > 80) add('AGENTS.md', `${count} Zeilen, erlaubt sind 80. Nur Arbeitsweise und Aufbau; was der Code zeigt, streichen, Offenes nach STAND.md.`);
-  const map = agents.split(/^## Wo liegt was$/m)[1]?.split(/^## /m)[0];
-  if (map === undefined) add('AGENTS.md', 'Abschnitt „## Wo liegt was“ fehlt. Ordner und Namensmuster dort auflisten.');
-  for (const [, path] of (map ?? '').matchAll(/`([^`*<\s]+\/[^`*<\s]*)`/g)) {
+  const map = agents.split(/^## (?:Wo liegt was|Where things are)$/m)[1]?.split(/^## /m)[0] ?? '';
+  for (const [, path] of map.matchAll(/`([^`*<\s]+\/[^`*<\s]*)`/g)) {
     if (!existsSync(resolve(dirname(agentsPath), path))) add('AGENTS.md', `Pfad \`${path}\` aus „Wo liegt was“ existiert nicht. Karte an den Code anpassen.`);
   }
 }
@@ -90,7 +86,7 @@ if (!existsSync(resolve(root, docDir, 'STAND.md'))) add(`${docDir}/STAND.md`, 'S
 
 if (findings.length) {
   console.error(findings.join('\n'));
-  console.error(`\n${findings.length} Verstöße. Jede Zeile nennt Datei, Stelle und was zu tun ist.`);
+  console.error(`\n${findings.length} Funde. Jede Zeile nennt Datei, Stelle und was zu tun ist.`);
   process.exit(1);
 }
 console.log('check-ops: ok');

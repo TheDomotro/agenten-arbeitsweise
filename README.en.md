@@ -28,7 +28,7 @@ Open Claude Code or Codex in your project folder and paste this sentence:
 Set up my project in this way of working: https://github.com/TheDomotro/agenten-arbeitsweise. Read START.en.md first and follow the steps.
 ```
 
-The agent briefly explains its plan, asks at most four questions with a recommendation each, and then sets everything up. It asks you before deleting, pushing and changing anything on GitHub.
+The agent briefly explains its plan, asks at most four questions with a recommendation each, and then sets everything up.
 
 ## Why?
 
@@ -81,14 +81,14 @@ Like the garden above: the checks are the fence. Good patterns grow in neat rows
 
 | File or setting | What it does |
 |---|---|
-| `~/.codex/AGENTS.md` | Global rules for all your projects, written once. `~/.claude/CLAUDE.md` only points to it. |
-| `AGENTS.md` | Says how you work in the project and where things are, in at most 80 lines. |
+| Global rules | Apply to all your projects and live exactly once in one file: with Claude Code in `~/.claude/CLAUDE.md`, with Codex in `~/.codex/AGENTS.md`. |
+| `AGENTS.md` | Says briefly how you work in the project and where things are. |
 | `STAND.md` | Says what is open, as a plan with packages ("Stand" means "status"). |
-| `CLAUDE.md` | Only points to `AGENTS.md`. |
+| `CLAUDE.md` | Only with Claude Code: points to `AGENTS.md`. |
 | `scripts/check-ops.mjs` | Finds comments without a reason, extra Markdown files, credentials, skipped tests and wrong paths in `AGENTS.md`. |
-| `scripts/githooks/pre-commit` | Runs `check-ops` and lint before every commit and protects `AGENTS.md` and `STAND.md` on side branches. |
+| `scripts/githooks/pre-commit` | Runs `check-ops` and lint before every commit. |
 | `scripts/githooks/post-merge` and `post-checkout` | Remove merged worktrees and branches after the merge to `main`. |
-| `.claude/settings.json` | Makes Claude Code ask before push, pull request, merge and release, and starts worktrees from the local state. |
+| Approvals | The agent asks before push, pull request, merge and release. With Claude Code via `.claude/settings.json`, with Codex via the Codex settings. |
 | `.github/workflows/ci.yml` | Checks every push on GitHub. |
 | Git and GitHub | `fetch.prune` removes deleted remote branches locally, GitHub deletes branches after the merge. |
 | Linter and formatter | Standard tools of your stack, for example ESLint, ruff or clippy. |
@@ -127,7 +127,7 @@ You name a goal. The agent writes a plan with packages in `STAND.md` and works t
 | Cleans up and shows first what it deletes | |
 
 > [!NOTE]
-> The guide works with Claude Code and Codex. Other coding agents with access to a terminal and files can follow it too.
+> The guide is written for Claude Code or Codex, whichever agent you use. Other coding agents with access to a terminal and files can follow it too.
 
 ## License
 

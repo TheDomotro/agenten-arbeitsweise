@@ -3,9 +3,8 @@
 worktrees_removed=""
 branches_removed=""
 merged=$(git rev-list --merges --first-parent --parents HEAD | awk '{for (i = 3; i <= NF; i++) print $i}')
-worktrees=$(git worktree list --porcelain | awk '/^worktree /{sub(/^worktree /, ""); path = $0} /^HEAD /{print $2, path}')
+worktrees=$(git worktree list --porcelain | awk '/^worktree /{sub(/^worktree /, ""); path = $0; n++} /^HEAD /{if (n > 1) print $2, path}')
 while read -r tip path; do
-  case "$path" in */.claude/worktrees/*) ;; *) continue ;; esac
   echo "$merged" | grep -qx "$tip" || continue
   git worktree remove "$path" >/dev/null 2>&1 && worktrees_removed="$worktrees_removed ${path##*/}"
 done <<LIST
