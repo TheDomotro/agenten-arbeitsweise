@@ -112,7 +112,7 @@ Du arbeitest wie gewohnt mit deinem Agenten. Der Unterschied zeigt sich bei Fehl
 2. **Regeln als Prüfung, nicht als Text.** Jede Korrektur wird eine Lint-Regel, ein Typ, ein Test oder eine Zeile in `check-ops`.
 3. **Fast keine Kommentare.** Erlaubt ist nur ein `WARUM:` für einen Grund, den der Code nicht zeigt.
 4. **Genau zwei Doku-Dateien.** `AGENTS.md` sagt, wie ihr arbeitet. `STAND.md` sagt, was offen ist.
-5. **Prüfen durch Ausführen.** Tests, Browser und Screenshots zeigen, ob es geht. Rote Tests werden an der Ursache behoben.
+5. **Prüfen durch Ausführen.** Tests und, bei Oberflächen, Screenshots zeigen, ob es geht. Rote Tests werden an der Ursache behoben.
 6. **Einfach und sicher.** Standardwerkzeuge. Pushes, Deployments und Löschen nur mit deiner Freigabe.
 
 ## Wer macht was?

@@ -44,10 +44,10 @@ Applies if your tool can start sub-agents. Otherwise you do everything yourself,
 - With red tests, fix the cause. The cause can also be a wrong expectation in the test. Do not rerun until it turns green by chance.
 - If the same check is red twice: stop, look for the cause in the process and tell the user in two sentences.
 - Do not stop at the first finding: collect similar errors and get approval for all of them at once.
-- Keep it simple: standard tools with standard settings, nothing nobody needs today, no protection against imagined cases. Real protection (data loss, double sending, permissions) stays.
+- Keep it simple: standard tools with standard settings, nothing nobody needs today, no protection against imagined cases. Real protection (data loss, running something twice, permissions, security) stays.
 - After restarting a service, check briefly: new process, service answers.
 
-## Interfaces
+## User interfaces (only if the project has one)
 
 - Before building UI, search the existing component kit. Add missing features to the shared component instead of building one-off solutions.
 - Check interactive elements in the browser: normal, hover, focus, active, disabled, plus light and dark. A screenshot is the easiest proof.

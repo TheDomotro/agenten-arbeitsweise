@@ -26,4 +26,4 @@ Nur Ordner und Namensmuster, keine Einzeldateien. `node scripts/check-ops.mjs` p
 
 - Alles: `node scripts/check-ops.mjs`, `<LINT-BEFEHL>`, `<TEST-BEFEHL>`.
 - Oberflächen: `<BROWSERPRÜFUNG, zum Beispiel npx playwright test>`.
-- <Projektbesonderheit, zum Beispiel: Beim Nachbau eines bestehenden Produkts erst im Original messen, dann bauen.>
+- <Projektbesonderheit, die der Code nicht zeigt, zum Beispiel: welche Dienste lokal laufen müssen.>

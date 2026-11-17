@@ -112,7 +112,7 @@ You work with your agent as usual. The difference shows when something goes wron
 2. **Rules as checks, not as text.** Every correction becomes a lint rule, a type, a test or a line in `check-ops`.
 3. **Almost no comments.** Only a `WHY:` for a reason the code does not show.
 4. **Exactly two doc files.** `AGENTS.md` says how you work. `STAND.md` says what is open.
-5. **Verify by running.** Tests, browser and screenshots show whether it works. Red tests get fixed at the cause.
+5. **Verify by running.** Tests and, for user interfaces, screenshots show whether it works. Red tests get fixed at the cause.
 6. **Simple and safe.** Standard tools. Pushes, deployments and deletions only with your approval.
 
 ## Who does what?

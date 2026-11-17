@@ -44,10 +44,10 @@ Gilt, wenn dein Werkzeug Sub-Agenten starten kann. Sonst arbeitest du alles selb
 - Bei roten Tests die Ursache beheben. Die Ursache kann auch eine falsche Erwartung im Test sein. Nicht wiederholen, bis es zufällig grün ist.
 - Ist dieselbe Prüfung zweimal rot: anhalten, die Ursache im Ablauf suchen und dem Nutzer in zwei Sätzen berichten.
 - Nicht beim ersten Fund aufhören: gleichartige Fehler sammeln und die Freigabe für alles auf einmal holen.
-- Einfach halten: Standardwerkzeuge mit Standardeinstellungen, nichts bauen, was heute niemand braucht, kein Schutz gegen erdachte Fälle. Echter Schutz (Datenverlust, Doppelversand, Rechte) bleibt.
+- Einfach halten: Standardwerkzeuge mit Standardeinstellungen, nichts bauen, was heute niemand braucht, kein Schutz gegen erdachte Fälle. Echter Schutz (Datenverlust, doppelte Ausführung, Rechte, Sicherheit) bleibt.
 - Nach dem Neustart eines Dienstes kurz prüfen: neuer Prozess, Dienst antwortet.
 
-## Oberflächen
+## Oberflächen (nur wenn das Projekt eine hat)
 
 - Vor jedem UI-Bau im vorhandenen Baukasten suchen. Fehlendes im gemeinsamen Baustein ergänzen statt Einzellösungen bauen.
 - Bedienbare Elemente im Browser prüfen: Normal, Hover, Fokus, Aktiv, Deaktiviert, dazu hell und dunkel. Ein Screenshot ist der einfachste Beleg.
