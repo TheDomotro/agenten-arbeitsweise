@@ -50,7 +50,6 @@ Gilt, wenn dein Werkzeug Sub-Agenten starten kann. Sonst arbeitest du alles selb
 ## Oberflächen (nur wenn das Projekt eine hat)
 
 - Vor jedem UI-Bau im vorhandenen Baukasten suchen. Fehlendes im gemeinsamen Baustein ergänzen statt Einzellösungen bauen.
-- Bedienbare Elemente im Browser prüfen: Normal, Hover, Fokus, Aktiv, Deaktiviert, dazu hell und dunkel. Ein Screenshot ist der einfachste Beleg.
 
 ## Sicherheit
 
