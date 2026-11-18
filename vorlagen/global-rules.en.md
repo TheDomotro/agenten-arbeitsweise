@@ -50,7 +50,6 @@ Applies if your tool can start sub-agents. Otherwise you do everything yourself,
 ## User interfaces (only if the project has one)
 
 - Before building UI, search the existing component kit. Add missing features to the shared component instead of building one-off solutions.
-- Check interactive elements in the browser: normal, hover, focus, active, disabled, plus light and dark. A screenshot is the easiest proof.
 
 ## Safety
 
